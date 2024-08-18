@@ -19,10 +19,8 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-// Import and use routes
 app.use("/api", require("./routes/userRoutes"));
 
-// Routes
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
