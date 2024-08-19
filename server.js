@@ -11,19 +11,15 @@ const app = express();
 app.use(express.json());
 app.use(passport.initialize());
 
-// MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-// Import and use routes
-app.use("/api/auth", require("./routes/auth")); // Make sure this path is correct
+app.use("/api", require("./routes/userRoutes"));
 
-// Routes
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
