@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 
-
 exports.registerUser = async (req, res) => {
     const { username, email, password } = req.body;
   
