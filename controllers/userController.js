@@ -1,63 +1,3 @@
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
-// const User = require("../models/User");
-// require("dotenv").config();
-
-// exports.register = async (req, res) => {
-//   const { username, email, password } = req.body;
-
-//   try {
-//     let user = await User.findOne({ email });
-//     if (user) {
-//       return res.status(400).json({ msg: "User already exists" });
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     user = new User({
-//       username,
-//       email,
-//       password: hashedPassword,
-//     });
-
-//     await user.save();
-
-//     res.status(201).json({ msg: "User registered successfully" });
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server error");
-//   }
-// };
-
-// exports.login = async (req, res) => {
-//   const { email, password } = req.body;
-
-//   try {
-//     let user = await User.findOne({ email });
-//     if (!user) {
-//       return res.status(400).json({ msg: "Email doesn't exist" });
-//     }
-
-//     const isMatch = await bcrypt.compare(password, user.password);
-//     if (!isMatch) {
-//       return res.status(400).json({ msg: "Password doesn't match" });
-//     }
-
-//     const payload = { id: user.id };
-//     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-//       expiresIn: "1h",
-//     });
-
-//     res.json({ token: `Bearer ${token}` });
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).json({ msg: "Server error" });
-//   }
-// };
-
-
-/************ new code *****************/
-
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -84,7 +24,6 @@ exports.registerUser = async (req, res) => {
       // const verificationToken = crypto.randomBytes(64).toString('hex');
       const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
       console.log('Verification token generated:', verificationCode);
-  
       const user = await User.create({
         username,
         email,
@@ -93,10 +32,6 @@ exports.registerUser = async (req, res) => {
       });
   
       console.log('User created:', user);
-  
-      // const verificationUrl = `http://localhost:5000/api/users/verify/${verificationToken}`;
-      // console.log('Verification URL:', verificationUrl);
-  
       await sendEmail({
         to: user.email,
         subject: 'Verify your email',
@@ -109,30 +44,6 @@ exports.registerUser = async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   };
-  
-
-// exports.verifyUser = async (req, res) => {
-//   const { token } = req.params;
-
-//   try {
-//     const user = await User.findOne({ verificationToken: token });
-
-//     if (!user) {
-//       return res.status(400).json({ message: 'Invalid token' });
-//     }
-
-//     user.isVerified = true;
-//     user.verificationToken = undefined;
-
-//     await user.save();
-//     res.status(200).json({ message: 'Email verified successfully' });
-//     // res.redirect('http://localhost:3000/email-verified')
-//   } catch (error) {
-//     console.error('Email verification failed:', error);
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// };
-
 
 exports.verifyUser = async (req, res) => {
   const { email, verificationCode } = req.body;
