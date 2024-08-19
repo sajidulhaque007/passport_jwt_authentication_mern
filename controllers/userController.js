@@ -1,3 +1,4 @@
+const validator = require('validator');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -9,6 +10,18 @@ exports.registerUser = async (req, res) => {
   
     try {
       console.log('Received registration request:', { username, email, password });
+        // Validate input
+      if (!username || !email || !password) {
+        return res.status(400).json({ message: 'All fields are required' });
+      }
+
+      if (!validator.isEmail(email)) {
+        return res.status(400).json({ message: 'Invalid email format' });
+      }
+
+      if (password.length < 6) {
+        return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+      }
   
       const userExists = await User.findOne({ email });
   
