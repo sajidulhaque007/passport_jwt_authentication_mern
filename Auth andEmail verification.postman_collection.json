@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "dcbf73a5-963b-4b3e-991d-6dfc05ec418b",
+		"_postman_id": "7188eb7e-bdc4-4cbe-b49d-554fc55570f8",
 		"name": "Auth andEmail verification",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22924493"
+		"_exporter_id": "14821361"
 	},
 	"item": [
 		{
@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"tasnimulalam303@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+					"raw": "{\r\n  \"email\": \"lipon@vumi.com.bd\",\r\n  \"password\": \"12345678\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,7 +54,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"tasnimul\",\r\n  \"email\": \"tasnimulalam303@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+					"raw": "{\r\n  \"username\": \"Lipon\",\r\n  \"email\": \"lipon@vumi.com.bd\",\r\n  \"password\": \"12345678\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -124,7 +124,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"testuser@example.com\",\r\n  \"verificationCode\": \"123456\"\r\n}\r\n",
+					"raw": "{\r\n  \"email\": \"lipon@vumi.com.bd\",\r\n  \"verificationCode\": \"285314\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,6 +141,96 @@
 					"path": [
 						"api",
 						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzQ4YTEyMzIwNjNkNDJjY2U0MTZmNiIsImlhdCI6MTcyNDE1NjQ5MCwiZXhwIjoxNzI5MzQwNDkwfQ.PZbGd_XQQc4N0MsBKwMYN7KQRfwl94c2XuroXZb1IOA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user-info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user-info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzQ2ZTNiMjZmNTcxMzA3MzllMTk3MiIsImlhdCI6MTcyNDE0OTM1OCwiZXhwIjoxNzI5MzMzMzU4fQ.I2lVUVRr4SxrmTlT_amAHtN3Hu6MJbPJ-M1eTWgoil0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh-token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzQ4YTEyMzIwNjNkNDJjY2U0MTZmNiIsImlhdCI6MTcyNDE1NjQ5MCwiZXhwIjoxNzI5MzQwNDkwfQ.PZbGd_XQQc4N0MsBKwMYN7KQRfwl94c2XuroXZb1IOA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/refresh-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"refresh-token"
 					]
 				}
 			},
